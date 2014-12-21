@@ -1,6 +1,5 @@
-## makeCacheMatrix creates a matrix object with an iniital value equal to the
-## passed value, and a cached copy (originally set to NULL) is overwritten
-## with the initial value if different from the initial value
+## makeCacheMatrix creates a matrix object that is a list with 4 elements,
+## set/get values of the matrix and its inverse
 
 makeCacheMatrix <- function(x = matrix()) {
   m <- NULL
@@ -16,8 +15,9 @@ makeCacheMatrix <- function(x = matrix()) {
        getinverse = getinverse)
 }
 
-## cacheSolve returns the cached value of the inverse of x if x is a new
-## matrix, otherwise it calculates, caches, and returns the inverse of x
+## cacheSolve returns the cached value of the inverse of x if x the same
+## as the prior function call, otherwise it calculates, caches, and returns 
+## the inverse of x
 
 cacheSolve <- function(x, ...) {
   m <- x$getinverse()
@@ -31,10 +31,12 @@ cacheSolve <- function(x, ...) {
   m
 }
 
-testm <- matrix(1:9,3,3)
-testn <- matrix(1:25,5,5)
+## here is what i used to test my code
+## testa <- matrix(c(1,0,0,1,1,0,1,1,1),3,3)
+## testb <- matrix(c(1,0,0,0,1,1,0,0,1,1,1,0,1,1,1,1),4,4)
+## BigMat <- makeCacheMatrix(testa)
+## BiggerMat <- makeCacheMatrix(testb)
+## cacheSolve(BigMat)
+## cacheSolve(BigMat)
+## cacheSolve(BiggerMat)
 
-BigMat <- makeCacheMatrix(testm)
-BiggerMatrix <- makeCacheMatrix(testn)
-
-cacheSolve(BigMat)
